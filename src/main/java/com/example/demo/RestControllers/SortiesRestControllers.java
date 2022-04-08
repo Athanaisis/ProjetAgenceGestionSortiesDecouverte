@@ -30,8 +30,8 @@ public class SortiesRestControllers {
 	}
 
 	@PostMapping
-	public Sorties addSortie(@RequestBody @Valid Sorties produit) {
-		return sortiesRepository.save(produit);
+	public Sorties addSortie(@RequestBody @Valid Sorties sorties) {
+		return sortiesRepository.save(sorties);
 	}
 
 	@GetMapping("/{id}")

@@ -11,9 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.Models.Admin;
 import com.example.demo.Models.Sorties;
 import com.example.demo.Repositories.SortiesRepository;
+import com.example.demo.Services.AccountServiceImplement;
+
 
 @Controller
 @RequestMapping("sorties")
@@ -21,19 +25,29 @@ public class SortiesControllers {
 
 	@Autowired
 	SortiesRepository sortiesRepository;
+	@Autowired
+	AccountServiceImplement accountServiceImplement;
 
-	@GetMapping("")
+	@GetMapping
 	public String welcome(Model m) {
-		List<Sorties> sorties = sortiesRepository.findAll();
-		Sorties sorties1 = new Sorties();
-		m.addAttribute("sorties", sorties1);
+		
+		Sorties sorties = new Sorties();
+		List<Admin> admins=accountServiceImplement.findAdmins();
+		m.addAttribute("admins", admins);
 		m.addAttribute("sorties", sorties);
+		String nom="";
+		m.addAttribute("nom",nom);
 		return "Sorties.html";
 	}
 
-	@PostMapping("add")
-	public String addSorties(@Valid Sorties sorties, BindingResult result) {
-
+	@PostMapping("/add")
+	public String addSorties(@Valid Sorties sorties, BindingResult result,@RequestParam String nom) {
+		
+		Admin ad=accountServiceImplement.findbynom(nom); // recherche d'admin
+		sorties.setAdmin(ad); // association de admin=> sortie
+		
+		sortiesRepository.save(sorties);
+		
 		if (result.hasErrors())
 			return "Sorties";
 		else {

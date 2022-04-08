@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org/">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
 </head>
 <body>
+<div th:replace="nav.html"></div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col">
+     
+<form action="client/add" method="post" th:object="${participant}"><!-- ICI "${participant}" fait référence au paramètre "client" du model addAttribute dans le @controller-->
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Nom</label>
+  <input type="text" class="form-control"   th:field="*{nom}" name="nom"  placeholder="votre nom ici">
+  <div class="alert alert-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></div>
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Prenom</label>
+  <input type="text" class="form-control"   th:field="*{prenom}" name="prenom"  placeholder="votre prenom ici">
+  <div class="alert alert-danger" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></div>
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Age</label>
+  <input type="number"  class="form-control"   th:field="*{age}" name="age"  placeholder="votre age ici">
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email</label>
+  <input type="text" class="form-control"   name="email" th:field="*{email}"  placeholder="votre email ici">
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+  </div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Telephone:</label>
+  <input type="text" class="form-control"   name="telephone" th:field="*{tel}"  placeholder="votre tel ici">
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div>
+</div>
+
+<div class="mb-3">
+<button class="btn btn-success">Ajouter</button>
+</div>
+</form>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+</div>
+
+
+
 
 </body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>

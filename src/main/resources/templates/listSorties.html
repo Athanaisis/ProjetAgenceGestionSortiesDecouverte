@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<disor th:replace="na.html"></disor>
+<br>
+<h1 class="text-center"> liste des sorties</h1>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Titre</th>
+<th>Destination</th>
+<th>Depart</th>
+<th>Retour</th>
+<th>Description</th>
+<th>Prix</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="sor:${sorties}">
+<td th:text="${sor.titre}"></td>
+<td th:text="${sor.destination}"></td>
+<td th:text="${sor.depart}"></td>
+<td th:text="${sor.retour}"></td>
+<td th:text="${sor.description}"></td>
+<td th:text="${sor.prix}"></td>
+
+
+</tr>
+
+
+</tbody>
+</table>
+</body>
+</html>

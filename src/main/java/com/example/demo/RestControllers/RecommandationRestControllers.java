@@ -30,8 +30,8 @@ public class RecommandationRestControllers {
 	}
 
 	@PostMapping
-	public Recommandation createRecommandation(@Valid @RequestBody Recommandation post) {
-		return recommandationRepository.save(post);
+	public Recommandation createRecommandation(@Valid @RequestBody Recommandation reco) {
+		return recommandationRepository.save(reco);
 	}
 
 	@DeleteMapping("/{id}")

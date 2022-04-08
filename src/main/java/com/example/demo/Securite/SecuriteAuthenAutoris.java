@@ -16,10 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecuriteAuthenAutoris extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private DataSource dataSource; // parametre de récupération permanente des résultat de la BD
+	private DataSource dataSource; // parametre de récupération permanente des résultats de la BD
 	// format de données object
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 
 	// LES AUTHENTIFICATIONS //
 

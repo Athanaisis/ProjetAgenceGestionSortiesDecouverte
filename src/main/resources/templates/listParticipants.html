@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<dip th:replace="na.html"></dip>
+<br>
+<h1 class="text-center"> liste des participants</h1>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th>Nom</th>
+<th>Prenom</th>
+<th>Email</th>
+<th>Telephone</th>
+<th>age</th>
+
+</tr>
+</thead>
+<tbody>
+<tr th:each="p:${participant}">
+<td th:text="${p.nom}"></td>
+<td th:text="${p.prenom}"></td>
+<td th:text="${p.email}"></td>
+<td th:text="${p.telephone}"></td>
+<td th:text="${p.age}"></td>
+
+
+
+
+</tr>
+
+
+</tbody>
+</table>
+</body>
+</html>

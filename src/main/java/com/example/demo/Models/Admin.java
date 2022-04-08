@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -38,8 +37,8 @@ public class Admin implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Collection<Role> roles = new ArrayList<Role>();
 
-	@OneToOne(mappedBy = "admin")
-	private Sorties sorties;
+//	@OneToOne(mappedBy = "admin")
+//	private Sorties sorties;
 
 	public String getLogin() {
 		return login;
@@ -81,13 +80,13 @@ public class Admin implements Serializable {
 		this.roles = roles;
 	}
 
-	public Sorties getSorties() {
-		return sorties;
-	}
-
-	public void setSorties(Sorties sorties) {
-		this.sorties = sorties;
-	}
+//	public Sorties getSorties() {
+//		return sorties;
+//	}
+//
+//	public void setSorties(Sorties sorties) {
+//		this.sorties = sorties;
+//	}
 
 	public Admin() {
 		super();
@@ -95,14 +94,14 @@ public class Admin implements Serializable {
 
 	public Admin(String login, int active, @NotEmpty String password,
 			@NotBlank @Size(min = 5, max = 50, message = "la taille du nom est [5-50]") String nomcomplet,
-			Collection<Role> roles, Sorties sorties) {
+			Collection<Role> roles) {
 		super();
 		this.login = login;
 		this.active = active;
 		this.password = password;
 		this.nomcomplet = nomcomplet;
 		this.roles = roles;
-		this.sorties = sorties;
+		//this.sorties = sorties;
 	}
 
 }

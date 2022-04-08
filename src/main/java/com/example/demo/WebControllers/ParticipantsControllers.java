@@ -22,12 +22,12 @@ public class ParticipantsControllers {
 	@Autowired
 	ParticipantsRepository participantsRepository;
 
-	@GetMapping("")
+	@GetMapping
 	public String welcome(Model m) {
-		List<Participants> participant = participantsRepository.findAll();
+		List<Participants> participants= participantsRepository.findAll();
 		Participants participant1 = new Participants();
 		m.addAttribute("participant", participant1);
-		m.addAttribute("participant", participant);
+		m.addAttribute("participants", participants);
 		return "Participants.html";
 	}
 
@@ -38,7 +38,7 @@ public class ParticipantsControllers {
 			return "Participants.html";
 		else {
 			participantsRepository.save(participants);
-			return "redirect:/participants";
+			return "redirect:/participants"; // ici c'est le mapping (RequestMapping) qu'il faut renseigner et non la page web html
 		}
 
 	}
@@ -46,7 +46,11 @@ public class ParticipantsControllers {
 	@GetMapping("liste")
 	public String getListe(Model model) {
 		List<Participants> p = participantsRepository.findAll();
-		model.addAttribute("participantss", p);
+		model.addAttribute("participant", p); //Le model prend la classe participant
+		// le Model est un objet proposer pour intégrer les classes entity dans le web graphique (ici Participants.html)
+		//tout en gérant la documentation de la bdd effectuer grâce aux posts de utilisateurs
+		//depuis la page Participants.html //Ainsi la mise à jour de la bdd effectuée on peut synchroniser les infos entre
+		// la bdd et une autre page web (ici listParticipants.html)pour que l'utilisateur puisse visualiser et rectifier les modifications
 		return "listParticipants";
 	}
 

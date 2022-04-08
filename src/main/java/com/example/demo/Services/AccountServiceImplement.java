@@ -1,5 +1,7 @@
 package com.example.demo.Services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,18 @@ import com.example.demo.ServicesInterfaces.AccountService;
 @Transactional
 public class AccountServiceImplement implements AccountService {
 
+	@Autowired
+	AdminRepository adminRepository;
+	@Autowired
+	RoleRepository roleRepository;
+	
 	@Bean
 	// avoir un BCryptEncoder qui est initialisé une et une seule fois
 	public BCryptPasswordEncoder getBCPE() {
 		return new BCryptPasswordEncoder();
 
 	}
-
-	@Autowired
-	AdminRepository adminRepository;
-	@Autowired
-	RoleRepository roleRepository;
+	
 
 	@Override
 	public Admin saveAdmin(Admin admin) {
@@ -51,6 +54,23 @@ public class AccountServiceImplement implements AccountService {
 		Role role = (Role) roleRepository.findByRolename(roleName);
 		Admin admin1 = (Admin) adminRepository.findByLogin(login);
 		admin1.getRoles().add(role);
+		adminRepository.save(admin1);
 	}
 
+	@Override
+	public List<Admin> findAdmins(){
+		// TODO Auto-generated method stub
+		return adminRepository.findAll();
+	}
+public Admin findbynom(String nom)
+{
+return  adminRepository.findByNomcomplet(nom);	
+}
+
+	@Override
+	public List<Role> findRoles() {
+		// TODO Auto-generated method stub
+		return roleRepository.findAll();
+	}
+	
 }
